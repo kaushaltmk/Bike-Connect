@@ -1,0 +1,127 @@
+{% extends "admin_dashboard.html" %}
+<!DOCTYPE html>
+<html>
+  {% block content %}
+  <head>
+    <style>
+      html,
+      body {
+        background-color: grey;
+      }
+      /* CSS for the product table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        color: #fff;
+      }
+      .table {
+        background-color: rgb(192, 187, 187);
+        align-items: center;
+        display: flex;
+        font-style: italic;
+        font-size: large;
+      }
+      .table h1 {
+        color: rgb(235, 60, 7);
+        padding-left: 10px;
+        padding-right: 0;
+        font-size: 70px;
+      }
+      th,
+      td {
+        padding: 12px 12px;
+        text-align: left;
+        background-color: #6b6969;
+      }
+      th {
+        background-color: #6d6b6b;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: rgb(33, 33, 34);
+      }
+      tr:nth-child(even) {
+        background-color: #222;
+      }
+      /* CSS for responsive layout */
+      @media (max-width: 600px) {
+        table {
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+        th,
+        td {
+          min-width: 150px;
+        }
+      }
+      img.delete {
+        content: url("../static/icons/icons8-delete.svg");
+      }
+      img.delete:hover {
+        content: url("../static/icons/icons8-delete.gif");
+      }
+      img.edit {
+        content: url("../static/icons/icons8-edit.svg");
+      }
+      img.edit:hover {
+        content: url("../static/icons/icons8-edit.gif");
+      }
+    </style>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <div class="alert alert-danger" role="alert">{{message}}</div>
+    {% endfor %} {% endif %} {% endwith %}
+    <div class="table">
+      <h1 class="display-1">BIKE LISTS</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Bike Id</th>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Photo</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in record %}
+          <tr>
+            <td>{{r[0]}}</td>
+            <td>{{r[1]}}</td>
+            <td>{{r[2]}}</td>
+            <td>{{r[3]}}</td>
+            <td>{{r[4]}}</td>
+            <td>{{r[5]}}</td>
+            <td>{{r[7]}}</td>
+            <td>
+              <img
+                src="../static/bike/{{r[6]}}"
+                width="50px"
+                height="50px"
+                alt=""
+              />
+            </td>
+            <td>
+              <a href="/addbike_edit_form?bikeid={{r[0]}}"
+                ><img class="edit" width="50px" height="50px " alt=""
+              /></a>
+            </td>
+            <td>
+              <a href="/bike_delete?bikeid={{r[0]}}"><img class="delete" /></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endblock %}
+  </body>
+</html>

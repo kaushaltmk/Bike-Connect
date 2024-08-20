@@ -1,0 +1,93 @@
+{% extends "admin_dashboard.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block content %}
+    <title>Add Bikes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #b1b1b1;
+        margin: 0;
+        padding: 0;
+      }
+      .display-1 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: #e7651a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+      }
+      form {
+        margin-top: 40px;
+        margin-left: 30%;
+        background-color: #6e706e;
+        width: 700px;
+        height: 840px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+        margin: 10px;
+      }
+      input[type="file"] {
+        margin-top: 5px;
+      }
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <div class="alert alert-danger" role="alert">{{message}}</div>
+    {% endfor %} {% endif %} {% endwith %}
+    <form method="POST" action="/add_bike_insert" enctype="multipart/form-data">
+      <h4 class="display-1">ADD BIKES</h4>
+      <label for="name">Bike Name:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="name"> Brand:</label>
+      <input type="text" id="brand" name="brand" required />
+      <label for="name"> Model:</label>
+      <input type="text" id="model" name="model" required />
+      <label for="description">Description:</label>
+      <input type="text" id="model" name="descrip" required />
+      <label for="description">Location:</label>
+      <input type="text" id="model" name="location" required />
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price" required />
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="photo" required /> <br />
+      <input class="mt-3" type="submit" value="Submit" />
+    </form>
+    {% endblock %}
+  </body>
+</html>

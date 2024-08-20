@@ -1,0 +1,103 @@
+{% extends "main_layout.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block content %}
+    <title>Booking Confirmation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      h1 {
+        text-align: center;
+        color: #eb720f;
+        font-size: 50px;
+      }
+      .container {
+        max-width: 800px;
+        margin: 150px auto;
+        background-color: #575757;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .confirmation {
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+      .confirmation h2 {
+        color: #333;
+        margin-bottom: 10px;
+        font-style: italic;
+        font-size: 30px;
+      }
+      .confirmation p {
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
+      .confirmation.name {
+        font-weight: bold;
+      }
+      .confirmation.date {
+        font-style: italic;
+      }
+      .confirmation.service {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      .confirmation.message {
+        margin-top: 20px;
+      }
+      .confirmation.total {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 25px;
+      }
+      .confirmation.button {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .confirmation.button:hover {
+        background-color: #555;
+      }
+      #thanks {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0 0 0;
+      }
+      #thanks h5 {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="thanks">
+      <h5>
+        Thanks for booking .....!show your booking id on location. Happy Riding
+      </h5>
+    </div>
+    <div class="container">
+      <h1>Booking Confirmation</h1>
+      <div class="confirmation">
+        {% for r in record %}
+        <h2 class="danger">Booking ID: {{r[0]}}</h2>
+        <p class="name">Name: {{session['name']}}</p>
+        <p class="email">Email: {{session['email']}}</p>
+        <p class="phone">Phone: {{r[5]}}</p>
+        <p class="date">Date: {{r[2]}}</p>
+        <p class="time">Time: {{r[3]}}</p>
+        <p class="location">Pickup Location: {{r[6]}}</p>
+        <h3 class="message">Message: Please arrive 10 minutes early.</h3>
+        {% endfor %}
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>
